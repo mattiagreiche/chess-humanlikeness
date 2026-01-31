@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Project Snapshot: Quantifying Human-Likeness in Decision-Making</title>
+    <style>
+        /* Minimal, clean styling for a professional one-page snapshot */
+        :root {
+            --maxw: 900px;
+            --accent: #0b5bd7;
+            --muted: #666;
+            --pad: 18px;
+            --radius: 8px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        body {
+            background: #f7f8fb;
+            color: #111;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 36px 12px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: var(--maxw);
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 22px rgba(20, 30, 60, 0.08);
+            padding: 28px;
+            box-sizing: border-box;
+        }
+
+        header {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        header h1 {
+            font-size: 1.35rem;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        header .meta {
+            margin-left: auto;
+            text-align: right;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        p.lead {
+            margin: 12px 0 18px;
+            color: #222;
+        }
+
+        section {
+            margin: 16px 0;
+        }
+
+        .two-col {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .keypoints {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .kp {
+            background: #f1f6ff;
+            color: var(--accent);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+        }
+
+        .figure {
+            background: #fff;
+            border: 1px solid #eef1f8;
+            padding: 8px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        iframe.plot {
+            width: 100%;
+            height: 520px;
+            border: 0;
+            border-radius: 6px;
+            background: white;
+        }
+
+        footer {
+            margin-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .cta {
+            background: var(--accent);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* small screens */
+        @media (max-width:720px) {
+            .two-col {
+                flex-direction: column;
+            }
+
+            iframe.plot {
+                height: 420px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <div>
+                <h1 style="margin-bottom:2px;">Project Snapshot: Quantifying Human-Likeness in Decision-Making</h1>
+                <div class="muted">(very short summary + interactive 3D visualization)</div>
+            </div>
+            <div class="meta">
+                <!-- Replace with your name & contact -->
+                <div style="font-weight:600;">Mattia Greiche</div>
+                <div class="muted">mattia.greiche@mail.mcgill.ca</div>
+            </div>
+        </header>
+
+        <!-- Short abstract / elevator pitch -->
+        <p class="lead muted">
+            <!-- One-sentence project summary: replace this placeholder -->
+            <strong>Note:</strong> This is preliminary work that I'd love to explore further with feedback and potential collaboration!
+        </p>
+
+        <!-- Core highlights -->
+        <section>
+            <div class="col">
+                <h3 style="margin:0 0 6px;">Main idea</h3>
+                <div>
+                    <p>I used Maia-2, a human-trained policy model for chess, to quantify 
+                    the "human-likeness" of 55 grandmasters. Maia-2 (see <a href="https://arxiv.org/abs/2409.20553">arXiv:2409.20553</a>)
+                    is a deep-learning model trained exclusively on human games to predict the consensus human move in a given context 
+                    (i.e., what a player at a specific rating would do), rather than the objective optimal move.</p>
+
+                    <p>I calculated the mean predicted probability across 20,000 moves for each grandmaster, stratified by game phase
+                    (opening/mid/end). I found that a single latent axis explains <strong>~82%</strong> of the variance in human-likeness 
+                    scores; higher values on this axis mean more human-typical play in every phase.</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <h3 style="margin:0 0 6px;">Why it matters</h3>
+                <div>
+                    <p><strong>1. Latent Behavioural Structure:</strong>
+                        This consistency is non-trivial. Chess strategy is highly phase-dependent (openings rely on memorized theory, 
+                        middlegames on tactics/strategy, endgames on technique), so the emergence of a single "human-likeness" 
+                        axis across these three distinct contexts is a significant signal.
+                        It suggests this approach provides a robust, model-based metric for how "typical" an 
+                        agent’s decision-making is relative to the human population policy. </p>
+                    <p><strong>2. Orthoganility to Skill and Era:</strong>
+                        Crucially, I found that players' human-likeness scores are <strong>uncorrelated</strong> with playing 
+                        strength (R<sup>2</sup> ≈ 0.016) and historical era (R<sup>2</sup> ≈ 0.0004).
+                        This independence suggests 
+                        that "human-likeness" captures a behavioral axis orthogonal to
+                        raw skill. It implies that elite proficiency is compatible with a wide spectrum of styles, 
+                        ranging from those that align closely with consensus human intuition to those that diverge 
+                        sharply from it.</p>
+                    <p><strong>3. Identity & Generalization:</strong>
+                        I also found that this metric acts as a behavioural 
+                        fingerprint. Even with a limited sample of moves for each of the 55 grandmasters, it identifies them with <strong>~44%</strong> top-5 accuracy
+                        (chance ≈ 9%) within
+                        the 3-dimensional human-likeness space. This methodology of using a deep learning model to quantify deviations 
+                        from a consensus baseline to capture individual style could generalize to other
+                        domains where characterizing "anomalous" or "typical" behaviour is critical, which aligns with research
+                        at the Complex Data Lab.</p>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive figure placeholder -->
+        <section>
+            <h3 style="margin-bottom:6px;">Interactive 3D visualization</h3>
+            <div class="muted">
+                Rotate, zoom, and hover to inspect the player manifold. The axes represent 'human-likeness' in the opening,
+                middlegame, and endgame, quantified as the average probability Maia-2 assigned to the moves actually played 
+                by each grandmaster.
+            </div>
+
+            <div class="figure" style="margin-top:10px;">
+                <iframe class="plot" src="plotly_3d.html" title="Interactive 3D PCA plot — human-likeness"
+                    style="width: 100%; height: 600px; border: none; display: block;">
+                </iframe>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
