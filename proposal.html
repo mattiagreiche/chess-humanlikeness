@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proposal Snapshot — Human-likeness in Decision Policies</title>
+  <style>
+    /* Minimal, clean styling for a professional one-page snapshot */
+    :root{
+      --maxw:900px;
+      --accent:#0b5bd7;
+      --muted:#666;
+      --pad:18px;
+      --radius:8px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{
+      background:#f7f8fb;
+      color:#111;
+      margin:0;
+      display:flex;
+      justify-content:center;
+      padding:36px 12px;
+    }
+    .page{
+      width:100%;
+      max-width:var(--maxw);
+      background:white;
+      border-radius:10px;
+      box-shadow:0 6px 22px rgba(20,30,60,0.08);
+      padding:28px;
+      box-sizing:border-box;
+    }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    header h1{
+      font-size:1.35rem;
+      margin:0;
+      line-height:1.1;
+    }
+    header .meta{
+      margin-left:auto;
+      text-align:right;
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+    p.lead{ margin:12px 0 18px; color:#222; }
+    section{ margin:16px 0; }
+    .two-col{ display:flex; gap:18px; align-items:flex-start; }
+    .col{ flex:1; min-width:0; }
+    .muted{ color:var(--muted); font-size:0.95rem; }
+    .keypoints{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .kp{ background:#f1f6ff; color:var(--accent); padding:8px 12px; border-radius:999px; font-size:0.9rem; }
+    .figure{
+      background:#fff;
+      border:1px solid #eef1f8;
+      padding:8px;
+      border-radius:8px;
+      margin-top:10px;
+    }
+    iframe.plot{
+      width:100%;
+      height:520px;
+      border:0;
+      border-radius:6px;
+      background:white;
+    }
+    footer{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--muted);
+      font-size:0.92rem;
+    }
+    .cta{
+      background:var(--accent);
+      color:white;
+      padding:8px 12px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:0.95rem;
+    }
+    /* small screens */
+    @media (max-width:720px){
+      .two-col{ flex-direction:column; }
+      iframe.plot{ height:420px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>Proposal snapshot — Human-likeness / Typicality of decision policies</h1>
+        <div class="muted">(2-page summary + interactive 3D visualization)</div>
+      </div>
+      <div class="meta">
+        <!-- Replace with your name & contact -->
+        <div style="font-weight:600;">Your Name</div>
+        <div class="muted">email@example.edu · github.com/yourname</div>
+      </div>
+    </header>
+
+    <!-- Short abstract / elevator pitch -->
+    <p class="lead muted">
+      <!-- One-sentence project summary: replace this placeholder -->
+      <strong>One-line summary:</strong> [Concise description of the project idea: e.g., using a human-trained policy model to quantify individual decision typicality across contexts (chess example).]
+    </p>
+
+    <!-- Core highlights -->
+    <section>
+      <div class="two-col">
+        <div class="col">
+          <h3 style="margin:0 0 6px;">Key facts</h3>
+          <div class="muted">
+            <!-- Short bullet list / one-liners. Replace with your facts -->
+            <ul>
+              <li>Dataset: sample of 50–60 Grandmasters (games from X source)</li>
+              <li>Model: Maia-2 (human-trained move probability model)</li>
+              <li>Primary metric: mean predicted probability / NLL per move (aggregated per player)</li>
+              <li>Primary finding (prelim.): single latent axis explains ~82% cross-phase variance</li>
+            </ul>
+          </div>
+          <div class="keypoints" aria-hidden="true">
+            <div class="kp">Latent axis (~82%)</div>
+            <div class="kp">Robust: top-1 vs probabilistic scoring</div>
+            <div class="kp">Uncorrelated with ELO</div>
+          </div>
+        </div>
+
+        <div class="col">
+          <h3 style="margin:0 0 6px;">Why it matters</h3>
+          <div class="muted">
+            <!-- Short rationale. Keep to 2–3 bullets -->
+            <ul>
+              <li>Provides a model-based, quantitative measure of how typical an agent’s choices are relative to a population policy.</li>
+              <li>Potentially generalizable to other structured decision domains (with caveats).</li>
+              <li>Useful as a behavioral descriptor orthogonal to performance (ELO) for further study.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive figure placeholder -->
+    <section>
+      <h3 style="margin-bottom:6px;">Interactive 3D visualization</h3>
+      <div class="muted">Rotate/zoom to inspect player clustering by early/mid/endgame human-likeness (interactive PCA / latent space).</div>
+
+      <div class="figure" style="margin-top:10px;">
+        <!--
+          PLACEHOLDER FOR THE INTERACTIVE PLOT:
+          Assumes the interactive Plotly export is named "plot.html" and lives in the same directory.
+          The iframe below embeds that HTML (replace src if different).
+        -->
+        <iframe class="plot" src="plotly_3d.html" title="Interactive 3D PCA plot — human-likeness"></iframe>
+        
+      </div>
+    </section>
+
+    <!-- Short methods summary -->
+    <section>
+      <h3 style="margin:0 0 6px;">Methods (brief)</h3>
+      <div class="muted">
+        <!-- Replace with 2–4 concise sentences -->
+        <p style="margin:0;">
+          Moves are scored by the probability Maia-2 assigns to the actual played move. Per-move scores are aggregated per player and per phase (opening/mid/end). Dimensionality reduction (PCA) on these aggregated features yields the dominant latent axis; robustness checks include top-k stylometry and correlation with Elo.
+        </p>
+      </div>
+    </section>
+
+    <!-- Next steps / ask -->
+    <section>
+      <h3 style="margin:0 0 6px;">Planned next steps / collaboration ask</h3>
+      <div class="muted">
+        <!-- Replace with what you want from the lab (feedback, internship, co-supervision) -->
+        <ul>
+          <li>Run additional controls (phase shuffles, calibration, cross-domain tests).</li>
+          <li>Formalize metrics, baselines, and statistical tests for a short paper.</li>
+          <li>Seeking feedback and potential collaboration / supervision for a summer project or award proposal.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Links & attachments -->
+    <section>
+      <h3 style="margin:0 0 6px;">Materials</h3>
+      <div class="muted">
+        <!-- Replace / add actual links or files -->
+        <ul>
+          <li><a href="plotly_3d.html" target="_blank">Interactive 3D plot</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!--
+      NOTES FOR EDITING:
+      - Replace all bracketed placeholders with your content.
+      - Ensure plot.html (the Plotly export) is in the same directory as this HTML file.
+      - If hosting on GitHub Pages, place plot.html and this file in the repo root or docs/ and enable Pages.
+      - Keep the main text short (this template fits under ~300–400 words).
+    -->
+  </div>
+</body>
+</html>
