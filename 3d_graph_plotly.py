@@ -61,8 +61,9 @@ fig = go.Figure()
 # 1. Add Scatter Points with Text Labels
 fig.add_trace(go.Scatter3d(
     x=x, y=y, z=z,
-    mode='markers+text',
+    mode='markers',
     text=names,
+    hovertemplate='%{text}<extra></extra>',
     textposition="top center", # Adjusts text slightly above markers to prevent overlap
     textfont=dict(size=10, color='black'),
     marker=dict(
@@ -80,18 +81,21 @@ fig.add_trace(go.Scatter3d(
     z=[start[2], end[2]],
     mode='lines',
     line=dict(color='red', width=5),
-    name='PC1 (main trend)'
+    name='PC1',
+    hovertemplate='Variance explained: 0.8163<extra></extra>'  # <extra></extra> hides trace name
 ))
 
 # 3. Layout Configuration
 fig.update_layout(
     title='Human-Likeness of Chess Grandmasters by Game Phase',
-    width=1000,
-    height=800,
     scene=dict(
         xaxis_title='Opening Human-likeness',
-        yaxis_title='Middle Game Human-likeness',
-        zaxis_title='End Game Human-likeness'
+        yaxis_title='Middlegame Human-likeness',
+        zaxis_title='Endgame Human-likeness',
+        aspectmode='cube',
+        camera=dict(
+            eye=dict(x=1.6, y=-1.25, z=1.6)
+        )
     ),
     margin=dict(l=0, r=0, b=0, t=50) # Tighter margins
 )
@@ -101,7 +105,15 @@ fig.update_layout(
     uniformtext_mode='hide'  # Hide if it doesn't fit
 )
 
-fig.write_html("plotly_3d.html")
+fig.update_layout(
+    autosize=True
+)
+
+fig.write_html(
+    "plotly_3d.html",
+    include_plotlyjs="cdn",
+    config={"responsive": True}
+)
 
 fig.show()
 
