@@ -67,8 +67,8 @@ fig.add_trace(go.Scatter3d(
     textposition="top center", # Adjusts text slightly above markers to prevent overlap
     textfont=dict(size=10, color='black'),
     marker=dict(
-        size=5,
-        color='blue', # Standard color, can be changed
+        size=4,
+        color='blue',
         opacity=0.9
     ),
     name='Players'
@@ -87,26 +87,53 @@ fig.add_trace(go.Scatter3d(
 
 # 3. Layout Configuration
 fig.update_layout(
-    title='Human-Likeness of Chess Grandmasters by Game Phase',
+    title=dict(
+        text='GM Human-Likeness by Game Phase',
+        font=dict(size=18),
+        y=0.98,
+        yanchor='top',
+        xanchor='center',
+        x=0.5
+    ),
     scene=dict(
-        xaxis_title='Opening Human-likeness',
-        yaxis_title='Middlegame Human-likeness',
-        zaxis_title='Endgame Human-likeness',
+        xaxis=dict(
+            title='Opening',
+            titlefont=dict(size=12)  # Axis title size
+        ),
+        yaxis=dict(
+            title='Middlegame',
+            titlefont=dict(size=12)
+        ),
+        zaxis=dict(
+            title='Endgame',
+            titlefont=dict(size=12)
+        ),
         aspectmode='cube',
         camera=dict(
             eye=dict(x=1.6, y=-1.25, z=1.6)
         )
     ),
-    margin=dict(l=0, r=0, b=0, t=50) # Tighter margins
+    margin=dict(l=0, r=0, b=0, t=0),
+    font=dict(size=12)  
 )
 
 fig.update_layout(
-    uniformtext_minsize=5,   # Minimum font size
-    uniformtext_mode='hide'  # Hide if it doesn't fit
+    uniformtext_minsize=5, 
+    uniformtext_mode='hide'
 )
 
 fig.update_layout(
     autosize=True
+)
+
+fig.update_layout(
+    legend=dict(
+        orientation="h",
+        yanchor="top",
+        y=-0.05,
+        xanchor="center",
+        x=0.5
+    )
 )
 
 fig.write_html(
