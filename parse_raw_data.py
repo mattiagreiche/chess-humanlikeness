@@ -61,7 +61,7 @@ def load_data(force_reload=False):
                             active_elo,
                             inactive_elo
                         ]
-                        if is_opening:
+                        if is_opening(board):
                             early_game.append(turn_data)
                         if is_midgame(board):
                             mid_game.append(turn_data)
