@@ -2,11 +2,18 @@
 <html lang="en">
 
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2XZ2KF7F1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Y2XZ2KF7F1');
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Project Snapshot: Quantifying Human-Likeness in Decision-Making</title>
+    <title>Snapshot: Quantifying Human-Likeness in Decision-Making</title>
     <style>
-        /* Minimal, clean styling for a professional one-page snapshot */
         :root {
             --maxw: 900px;
             --accent: #0b5bd7;
@@ -139,6 +146,16 @@
             iframe.plot {
                 height: 420px;
             }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header .meta {
+                margin-left: 0;
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -147,20 +164,18 @@
     <div class="page">
         <header>
             <div>
-                <h1 style="margin-bottom:2px;">Project Snapshot: Quantifying Human-Likeness in Decision-Making</h1>
-                <div class="muted">(very short summary + interactive 3D visualization)</div>
+                <h1 style="margin-bottom:2px;">Snapshot: Quantifying Human-Likeness in Decision-Making</h1>
+                <div class="muted">(summary + 3D visualization + why it matters)</div>
             </div>
             <div class="meta">
-                <!-- Replace with your name & contact -->
                 <div style="font-weight:600;">Mattia Greiche</div>
                 <div class="muted">mattia.greiche@mail.mcgill.ca</div>
             </div>
         </header>
 
-        <!-- Short abstract / elevator pitch -->
+        <!-- Short note -->
         <p class="lead muted">
-            <!-- One-sentence project summary: replace this placeholder -->
-            <strong>Note:</strong> This is preliminary work that I'd love to explore further with feedback and potential collaboration!
+            This is a snapshot of early-stage research that I am excited to develop further. 
         </p>
 
         <!-- Core highlights -->
@@ -168,16 +183,46 @@
             <div class="col">
                 <h3 style="margin:0 0 6px;">Main idea</h3>
                 <div>
-                    <p>I used Maia-2, a human-trained policy model for chess, to quantify 
-                    the "human-likeness" of 55 grandmasters. Maia-2 (see <a href="https://arxiv.org/abs/2409.20553">arXiv:2409.20553</a>)
+                    <p>I used Maia-2, a state-of-the-art human prediction model for chess, to quantify 
+                    the "human-likeness" or "human-conformity" of 55 grandmasters. Maia-2 
+                    (see <a href="https://arxiv.org/abs/2409.20553" target="_blank" rel="noopener noreferrer">arXiv:2409.20553</a>)
                     is a deep-learning model trained exclusively on human games to predict the consensus human move in a given context 
                     (i.e., what a player at a specific rating would do), rather than the objective optimal move.</p>
 
-                    <p>I calculated the mean predicted probability across 20,000 moves for each grandmaster, stratified by game phase
-                    (opening/mid/end). I found that a single latent axis explains <strong>~82%</strong> of the variance in human-likeness 
-                    scores; higher values on this axis mean more human-typical play in every phase.</p>
+                    <p>I calculated the mean predicted probability that Maia-2 assigned to each grandmaster's actual moves
+                    across 18,000 moves per player, stratified by game phase
+                    (opening/mid/end). I found that a single latent axis (the first principal component) explains <strong>~82%</strong> 
+                    of the variance in human-likeness 
+                    scores; higher values on this axis mean more human-typical play in <i>every</i> phase.</p>
                 </div>
             </div>
+
+                <!-- Interactive figure -->
+        <section>
+            <h3 style="margin-bottom:6px;">Interactive 3D visualization</h3>
+            <div class="muted">
+                Rotate, zoom, and hover to explore. The axes represent human-likeness (average Maia-2 probability) in the opening,
+                middlegame, and endgame for each grandmaster.
+            </div>
+
+        <style>
+        .plot-container {
+            width: 100%;
+            height: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .plot-container {
+                height: 400px; /* Shorter on mobile */
+            }
+        }
+        </style>
+
+        <iframe class="plot plot-container" src="plotly_3d.html" 
+            title="Interactive 3D PCA plot — human-likeness"
+            style="width: 100%; border: none; display: block;">
+        </iframe>
+        </section>
 
             <div class="col">
                 <h3 style="margin:0 0 6px;">Why it matters</h3>
@@ -186,44 +231,35 @@
                         This consistency is non-trivial. Chess strategy is highly phase-dependent (openings rely on memorized theory, 
                         middlegames on tactics/strategy, endgames on technique), so the emergence of a single "human-likeness" 
                         axis across these three distinct contexts is a significant signal.
-                        It suggests this approach provides a robust, model-based metric for how "typical" an 
-                        agent’s decision-making is relative to the human population policy. </p>
-                    <p><strong>2. Orthoganility to Skill and Era:</strong>
-                        Crucially, I found that players' human-likeness scores are <strong>uncorrelated</strong> with playing 
-                        strength (R<sup>2</sup> ≈ 0.016) and historical era (R<sup>2</sup> ≈ 0.0004).
-                        This independence suggests 
-                        that "human-likeness" captures a behavioral axis orthogonal to
-                        raw skill. It implies that elite proficiency is compatible with a wide spectrum of styles, 
+                        It suggests this approach can provide a robust, model-based metric for how "typical" an 
+                        agent's decision-making is relative to the human population. </p>
+                    <p><strong>2. Orthogonality to Skill and Era:</strong>
+                        Naturally, one might suspect Maia-2 is inadvertently measuring skill (stronger GMs being less human) or
+                        era effects (modern players matching Maia-2's training data better), but neither shows any correlation
+                        (R<sup>2</sup> ≈ 0.016 and R<sup>2</sup> ≈ 0.0004 respectively).
+                        In other words, "human-likeness" captures a behavioural axis orthogonal to both
+                        raw skill and era. It implies that elite proficiency is compatible with a wide spectrum of styles, 
                         ranging from those that align closely with consensus human intuition to those that diverge 
                         sharply from it.</p>
                     <p><strong>3. Identity & Generalization:</strong>
                         I also found that this metric acts as a behavioural 
-                        fingerprint. Even with a limited sample of moves for each of the 55 grandmasters, it identifies them with <strong>~44%</strong> top-5 accuracy
-                        (chance ≈ 9%) within
-                        the 3-dimensional human-likeness space. This methodology of using a deep learning model to quantify deviations 
-                        from a consensus baseline to capture individual style could generalize to other
-                        domains where characterizing "anomalous" or "typical" behaviour is critical, which aligns with research
-                        at the Complex Data Lab.</p>
+                        fingerprint. For each player, I computed a three-dimensional signature of average human-likeness 
+                        per phase, calculated separately from the original 18,000 training moves and from a held-out set of 4,500 moves 
+                        (~100 games). A simple k-nearest neighbours classifier matching held-out signatures to training signatures achieves
+                        ~44% top-5 identification accuracy (vs. 9% random baseline).
+                        Remarkably, compressing each player's complex behavioural 
+                        patterns into just
+                        three human-likeness values preserves enough signal to recover individual identity 5&times; better than chance,
+                        suggesting the metric captures consistent, idiosyncratic patterns rather than mere noise or situational variation. </p>
+                        <p>
+                            My next goal is to better characterize what this latent axis actually captures (strategic tendencies like aggression and risk-taking,
+                            cognitive style, or other traits that shape individual playstyle).
+                        </p>
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Interactive figure placeholder -->
-        <section>
-            <h3 style="margin-bottom:6px;">Interactive 3D visualization</h3>
-            <div class="muted">
-                Rotate, zoom, and hover to inspect the player manifold. The axes represent 'human-likeness' in the opening,
-                middlegame, and endgame, quantified as the average probability Maia-2 assigned to the moves actually played 
-                by each grandmaster.
-            </div>
-
-            <div class="figure" style="margin-top:10px;">
-                <iframe class="plot" src="plotly_3d.html" title="Interactive 3D PCA plot — human-likeness"
-                    style="width: 100%; height: 600px; border: none; display: block;">
-                </iframe>
-            </div>
-        </section>
     </div>
 </body>
 
