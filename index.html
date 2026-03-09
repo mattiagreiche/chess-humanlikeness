@@ -191,7 +191,7 @@
 
                     <p>I calculated the mean predicted probability that Maia-2 assigned to each grandmaster's actual moves
                     across 18,000 moves per player, stratified by game phase
-                    (opening/mid/end). I found that a single latent axis (the first principal component) explains <strong>~82%</strong> 
+                    (opening/mid/end). I found that a single latent axis (the first principal component) explains <strong>~58%</strong> 
                     of the variance in human-likeness 
                     scores; higher values on this axis mean more human-typical play in <i>every</i> phase.</p>
                 </div>
@@ -218,7 +218,7 @@
         }
         </style>
 
-        <iframe class="plot plot-container" src="plotly_3d.html" 
+        <iframe class="plot plot-container" src="outputs/plotly_3d.html" 
             title="Interactive 3D PCA plot — human-likeness"
             style="width: 100%; border: none; display: block;">
         </iframe>
@@ -236,7 +236,7 @@
                     <p><strong>2. Orthogonality to Skill and Era:</strong>
                         Naturally, one might suspect Maia-2 is inadvertently measuring skill (stronger GMs being less human) or
                         era effects (modern players matching Maia-2's training data better), but neither shows any correlation
-                        (R<sup>2</sup> ≈ 0.016 and R<sup>2</sup> ≈ 0.0004 respectively).
+                        (R<sup>2</sup> ≈ 0.009 and R<sup>2</sup> ≈ 0.016 respectively).
                         In other words, "human-likeness" captures a behavioural axis orthogonal to both
                         raw skill and era. It implies that elite proficiency is compatible with a wide spectrum of styles, 
                         ranging from those that align closely with consensus human intuition to those that diverge 
@@ -246,7 +246,7 @@
                         fingerprint. For each player, I computed a three-dimensional signature of average human-likeness 
                         per phase, calculated separately from the original 18,000 training moves and from a held-out set of 4,500 moves 
                         (~100 games). A simple k-nearest neighbours classifier matching held-out signatures to training signatures achieves
-                        ~44% top-5 identification accuracy (vs. 9% random baseline).
+                        ~55% top-5 identification accuracy (vs. 9% random baseline).
                         Remarkably, compressing each player's complex behavioural 
                         patterns into just
                         three human-likeness values preserves enough signal to recover individual identity 5&times; better than chance,
