@@ -1,6 +1,8 @@
+import os
 import pickle
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.lines import Line2D
 from sklearn.decomposition import PCA
 
 with open('data/final_data.pkl', 'rb') as file:
@@ -38,7 +40,7 @@ for player, player_data in data.items():
 # PCA
 X = np.array([x, y, z]).T
 pca = PCA(n_components=3)
-X_pca = pca.fit_transform(X)
+pca.fit(X)
 mean = np.mean(X, axis=0)
 pc1 = pca.components_[0]
 
@@ -57,19 +59,30 @@ ax.plot([start[0], end[0]],
         [start[2], end[2]],
         color='red', linewidth=2, label='PC1 (main trend)')
 
-X = np.column_stack((x, y, z))  # shape (n_samples, 3)
+pc1_scores = X @ pc1
+r2_opening = np.corrcoef(x, pc1_scores)[0, 1] ** 2
+r2_middle  = np.corrcoef(y, pc1_scores)[0, 1] ** 2
+r2_end     = np.corrcoef(z, pc1_scores)[0, 1] ** 2
+pc1_pct = pca.explained_variance_ratio_[0]
 
-pca = PCA(n_components=3)
-pca.fit(X)
-
-print("Explained variance ratio:", pca.explained_variance_ratio_)
-print("Variance explained by PC1:", pca.explained_variance_ratio_[0])
+blank = Line2D([0], [0], alpha=0)
+ax.legend(
+    [Line2D([0], [0], color='red', linewidth=2), blank, blank, blank],
+    [r'$R^2$ with PC1:',
+     f'  \u2022 Opening = {r2_opening:.2f}',
+     f'  \u2022 Middle = {r2_middle:.2f}',
+     f'  \u2022 Endgame = {r2_end:.2f}'],
+    title=f'PC1 ({pc1_pct:.1%})',
+    loc='upper left', fontsize=8, title_fontsize=9, framealpha=0.9,
+)
 
 ax.set_xlabel('Opening Humanness STDEV')
 ax.set_ylabel('Middle Game Humanness STDEV')
 ax.set_zlabel('End Game Humanness STDEV')
-
-ax.scatter(x, y, z, alpha=0.9)
-
 ax.set_title('STDEV of Human-Likeness of Chess Grandmasters by Game Phase')
-plt.show()
+
+print("Explained variance ratio:", pca.explained_variance_ratio_)
+print("Variance explained by PC1:", pca.explained_variance_ratio_[0])
+
+os.makedirs('outputs', exist_ok=True)
+plt.savefig('outputs/regression_stds_plot.png')
