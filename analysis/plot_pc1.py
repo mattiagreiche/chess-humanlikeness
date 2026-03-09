@@ -31,13 +31,13 @@ names_sorted   = [n for _, n in sorted_pairs]
 
 zeros = np.zeros(len(pc1_sorted))
 
-fig, ax = plt.subplots(figsize=(12, 5))
+fig, ax = plt.subplots(figsize=(12, 4))
 ax.scatter(pc1_sorted, zeros, s=10, alpha=0.9)
 
 ta.allocate(ax, pc1_sorted, zeros, names_sorted,
             x_scatter=pc1_sorted, y_scatter=zeros,
             textsize=8, draw_lines=True, linecolor='black', linewidth=0.5,
-            max_distance=0.5)
+            max_distance=0.2)
 
 ax.set_yticks([])
 ax.set_xlabel('PC1 Projection (Humanness)')
