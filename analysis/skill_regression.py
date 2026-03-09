@@ -114,7 +114,7 @@ print(f"Intercept: {intercept:.4f}")
 
 plt.figure(figsize=(10, 6))
 plt.scatter(df_clean['Value'], df_clean['MaxELO'], alpha=0.7)
-plt.plot(df_clean['Value'], intercept + slope * df_clean['Value'], 'r', label='fitted line')
+plt.plot(df_clean['Value'], intercept + slope * df_clean['Value'], 'r', label=f'fit ($R^2 = {r_value**2:.4f}$)')
 for i, txt in enumerate(df_clean['Player']):
     plt.annotate(txt, (df_clean['Value'].iloc[i], df_clean['MaxELO'].iloc[i]), fontsize=8)
 plt.xlabel('PC1 score')
