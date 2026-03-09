@@ -1,3 +1,4 @@
+import os
 import pickle
 import numpy as np
 import plotly.graph_objects as go
@@ -130,16 +131,13 @@ fig.update_layout(
     )
 )
 
-import os
 os.makedirs('outputs', exist_ok=True)
 
 fig.write_html(
-    "outputs/plotly_3d.html",
+    "outputs/plot_means_interactive.html",
     include_plotlyjs="cdn",
     config={"responsive": True}
 )
-
-fig.show()
 
 # --- PCA Stats Output ---
 print("Explained variance ratio:", pca.explained_variance_ratio_)
