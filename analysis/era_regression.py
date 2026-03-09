@@ -154,4 +154,4 @@ plt.title('Linear Regression: Player Value vs Year of Peak')
 plt.legend()
 
 os.makedirs('outputs', exist_ok=True)
-plt.savefig('outputs/regression_era_plot.png')
+plt.savefig('outputs/regression_era_plot.png', dpi=300)

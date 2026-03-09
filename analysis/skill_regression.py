@@ -123,4 +123,4 @@ plt.title('Linear Regression: Player Value vs Max ELO')
 plt.legend()
 
 os.makedirs('outputs', exist_ok=True)
-plt.savefig('outputs/regression_skill_plot.png')
+plt.savefig('outputs/regression_skill_plot.png', dpi=300)
