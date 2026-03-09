@@ -13,7 +13,7 @@ Plotting each player as a point in (opening, middlegame, endgame) human-likeness
 
 ***Note**: The trend is better visualized through the interactive 3D plot. Click the image to open the website.*
 
-[![3D scatter of grandmaster humanness scores](outputs/regression_means_plot.png)](mattiagreiche.github.io/chess-behaviour-snapshot/)
+[![3D scatter of grandmaster humanness scores](outputs/regression_means_plot.png)](https://mattiagreiche.github.io/chess-behaviour-snapshot/)
 
 And here are those values collapsed onto PC1 (least to most human-like):
 ![1D projection of grandmaster humanness scores](outputs/pc1_projection.png)
