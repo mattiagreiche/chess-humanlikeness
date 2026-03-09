@@ -31,6 +31,8 @@ And here are those values collapsed onto PC1 (least to most human-like):
 
 ## Reproducing the results
 
+This repo uses Git LFS for some of the larger files. Please ensure you have Git LFS installed before cloning.
+
 All scripts are run from the project root:
 
 ```bash
