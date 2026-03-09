@@ -59,6 +59,11 @@ Cached files are already present in the repo.
 ```
 pip install -r requirements.txt
 ```
+
+## License and Usage
+
+All rights reserved. I'm sharing this repository publicly as part of my portfolio to showcase my current progress and methodology. Since this is an ongoing, unpublished project, I kindly ask that you do not copy or reuse the code or findings just yet. If you're interested in the project or want to discuss the approach, feel free to reach out!
+
 ---
 
 *Mattia Greiche — mattia.greiche@mail.mcgill.ca*
