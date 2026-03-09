@@ -11,11 +11,12 @@ I ran Maia-2 on 18,000 moves per grandmaster (opening, middlegame, endgame) and 
 
 Plotting each player as a point in (opening, middlegame, endgame) human-likeness space reveals a strong latent structure: a single axis (PC1) explains **~58%** of the variance, and it runs consistently across all three phases.
 
-[![3D scatter of grandmaster humanness scores](outputs/regression_means_plot.png)](outputs/plot_means_interactive.html)
-*Click the image to open the interactive 3D version.*
+***Note**: The trend is better visualized through the interactive 3D plot. Click the image to open the website.*
+
+[![3D scatter of grandmaster humanness scores](outputs/regression_means_plot.png)](mattiagreiche.github.io/chess-behaviour-snapshot/)
 
 And here are those values collapsed onto PC1 (least to most human-like):
-[![1D projection of grandmaster humanness scores](outputs/pc1_projection.png)](outputs/plot_means_interactive.html)
+![1D projection of grandmaster humanness scores](outputs/pc1_projection.png)
 
 
 
