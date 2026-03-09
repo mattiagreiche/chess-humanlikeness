@@ -34,13 +34,19 @@ zeros = np.zeros(len(pc1_sorted))
 fig, ax = plt.subplots(figsize=(12, 4))
 ax.scatter(pc1_sorted, zeros, s=10, alpha=0.9)
 
+y_scale = 1.5  # make textalloc think y-axis is 1.5x taller (helps spacing)
+
+ax.set_ylim(-0.15 * y_scale, 0.15 * y_scale)
+
 ta.allocate(ax, pc1_sorted, zeros, names_sorted,
             x_scatter=pc1_sorted, y_scatter=zeros,
             textsize=8, draw_lines=True, linecolor='black', linewidth=0.5,
-            max_distance=0.2)
+            max_distance=0.1, min_distance=0.0, nbr_candidates=1000, margin=0.01)
+
+ax.set_ylim(-0.15, 0.15) # reset y-limits
 
 ax.set_yticks([])
-ax.set_xlabel('PC1 Projection (Humanness)')
+ax.set_xlabel('PC1 Projection (Accounts for 58% of Human-likeness Variance)')
 ax.set_title('Projection of Players onto Principal Component 1')
 plt.tight_layout()
 
